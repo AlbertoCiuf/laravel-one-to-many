@@ -47,6 +47,16 @@
 
     </div>
 
+    <div class="mb-3">
+      <label for="title" class="form-label">Categoria</label>
+      <select name="category_id" id="category_id" class="form-control">
+        <option>Seleziona</option>
+        @foreach ($categories as $cat)
+          <option value="{{$cat->id}}">{{$cat->name}}</option>
+        @endforeach
+      </select>
+    </div>
+
     <button type="submit" class="btn btn-primary">Invia</button>
     <button type="reset" class="btn btn-secondary">Reset</button>
 

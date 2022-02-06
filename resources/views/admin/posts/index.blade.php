@@ -30,7 +30,13 @@
           <tr>
             <th scope="row">{{$post->id}}</th>
             <td>{{$post->title}}</td>
-            <td>{{$post->category->name}}</td>
+            <td>
+              @if ($post->category)
+              {{$post->category->name}}
+              @else
+              -
+              @endif
+            </td>
             <td>
               <a href="{{route('admin.posts.show', $post)}}" class="btn btn-warning">Visualizza</a>
             </td>

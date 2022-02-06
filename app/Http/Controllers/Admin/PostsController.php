@@ -28,7 +28,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -39,18 +40,19 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate(
-          [
-            'title' => 'required|min:2|max:255',
-            'content' => 'min:5'
-          ],
-          [
-            'title.required' => 'Il titolo è un campo obbligatorio.',
-            'title.min' => 'Il titolo deve essere lungo almeno :min caratteri.',
-            'title.max' => 'Il titolo deve essere lungo massimo :max caratteri',
-            'content.min' => 'Il contenuto deve essere lungo almeno :min caratteri'
-          ]);
-
+      $request->validate(
+      [
+        'title' => 'required|min:2|max:255',
+        'content' => 'min:5'
+      ],
+      [
+        'title.required' => 'Il titolo è un campo obbligatorio.',
+        'title.min' => 'Il titolo deve essere lungo almeno :min caratteri.',
+        'title.max' => 'Il titolo deve essere lungo massimo :max caratteri',
+        'content.min' => 'Il contenuto deve essere lungo almeno :min caratteri'
+      ]);
+      
+        $data = $request->all();
         $newPost = new Post();
         $newPost->fill($data);
         $newPost->slug = Post::generateUniqueSlug($newPost->title);
