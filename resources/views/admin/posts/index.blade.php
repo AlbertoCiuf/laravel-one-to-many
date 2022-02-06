@@ -20,6 +20,7 @@
         <tr>
           <th scope="col">ID</th>
           <th scope="col">Titolo del Post</th>
+          <th scope="col">Categoria</th>
           <th scope="col" colspan="3">Controlli</th>
         </tr>
       </thead>
@@ -29,6 +30,7 @@
           <tr>
             <th scope="row">{{$post->id}}</th>
             <td>{{$post->title}}</td>
+            <td>{{$post->category->name}}</td>
             <td>
               <a href="{{route('admin.posts.show', $post)}}" class="btn btn-warning">Visualizza</a>
             </td>
@@ -53,6 +55,20 @@
 
 
     {{$posts->links()}}
+
+
+    @foreach ($categories as $category)
+      <h2 class="py-4">{{$category->name}}</h2>
+      <ul>
+        @foreach ($category->posts as $post)
+        <li>
+          <a href="{{route('admin.posts.show', $post)}}">
+            {{$post->title}}
+          </a>
+        </li>
+        @endforeach
+      </ul>
+    @endforeach
 
 </div>
 @endsection

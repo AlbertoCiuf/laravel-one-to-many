@@ -13,7 +13,10 @@
   </div>
   @endif
 
-  <h1>{{$post->title}}</h1>
+  <h1 class="py-3">{{$post->title}}</h1>
+  <h4>
+    Categoria - <strong>{{$post->category->name}}</strong>
+  </h4>
   <p>
     {{$post->content}}
   </p>
