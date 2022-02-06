@@ -84,11 +84,12 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
+      $categories = Category::all();
       $post = Post::find($id);
       if (!$post) {
         abort(404);
       }
-      return view('admin.posts.edit', compact('post'));
+      return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
